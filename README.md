@@ -1,4 +1,132 @@
-# Linguabot Backend
+# Linga chatbot application
+
+
+## 🗣️ Talkie Tool – AI-Powered English Chatbot App
+
+Talkie Tool is a Flutter-based mobile app that helps users improve their English skills and interview readiness. It features an AI chatbot with grammar correction, speech-to-text voice input, grammar scoring, and user account support (sign-up, login, and profile management).
+
+---
+
+### ✨ Features
+
+*  AI-powered chatbot with **Basic** and **Pro** modes
+*  Voice-to-text input and **AI voice response** (planned)
+*  Grammar corrections and score feedback
+*  Chat history display (conversation threads)
+*  Secure login/signup with JWT
+*  Theme switch support (light/dark)
+*  Guest mode access (limited features)
+
+---
+
+###  Screens Overview
+
+* **HomeScreen**
+
+  * Text and voice chat interface
+  * Mode toggle: Basic ↔ Pro
+  * Drawer with “New Chat” option
+  * Conditional UI for logged-in vs guest users
+
+* **VoiceChatScreen**
+
+  * Record voice input
+  * Display transcription and AI responses
+  * Placeholder AI audio reply (voice output in future)
+
+* **Login & Signup Screens**
+
+  * User authentication using JWT
+  * Animated transitions
+
+* **ProfileModal**
+
+  * Displays user details
+  * Theme toggle and logout
+
+---
+
+###  Getting Started
+
+#### 1. Clone the Repository
+
+```bash
+git clone https://github.com/CHARANCHERRY123456/englishbot
+cd talkie-tool
+```
+
+#### 2. Install Dependencies
+
+```bash
+flutter pub get
+```
+
+#### 3. Run the App
+
+```bash
+flutter run
+```
+
+---
+
+### 📦 Dependencies
+
+```yaml
+dependencies:
+  flutter:
+  http:
+  flutter_secure_storage:
+  speech_to_text:
+  flutter_tts:
+```
+
+> Add more dependencies if you're using additional plugins like animations, themes, or packages like `provider`.
+
+---
+
+###  API & Backend
+
+* API Base URL: `https://englishbot-devs.onrender.com`
+* Auth API: Login, Signup, Get user details
+* Chat API: Send/receive messages with grammar corrections
+
+> Auth APIs are handled in `auth_api.dart`.
+
+---
+
+### 🔐 Token Handling
+
+* Token saved using `flutter_secure_storage`
+* Auto-fetch user data on app launch if token exists
+* Full logout flow: clear token + reset state
+
+---
+
+### 📂 Folder Structure (Simplified)
+
+```
+lib/
+├── api/              # Auth API calls
+├── screens/          # Home, VoiceChat, Login, Signup
+├── widgets/          # Chat UI elements, Profile modal
+├── main.dart         # App entry point
+```
+
+---
+
+###  Coming Soon
+
+*  AI-generated voice responses
+*  Save/load previous chat threads
+*  Performance analytics (grammar progress)
+
+---
+
+###  License
+
+MIT License – feel free to use and modify!
+
+---
 
 This is the backend for the Linguabot conversational AI application. It provides APIs for managing conversations, messages, and user authentication. The backend is built using FastAPI and integrates with a database (e.g., MongoDB) for storing conversations and messages.
 
@@ -224,3 +352,49 @@ Feel free to submit issues or pull requests to improve this project.
 
 ## **License**
 This project is licensed under the MIT License.
+
+
+
+this is the backend for model used in this project
+metadata
+library_name: transformers
+tags:
+  - grammar-correction
+  - t5
+  - text-to-text
+  - english
+license: apache-2.0
+datasets:
+  - chaojiang06/wiki_auto
+language:
+  - en
+base_model:
+  - google-t5/t5-small
+pipeline_tag: text2text-generation
+T5-Small Grammar Correction
+A fine-tuned t5-small model for correcting grammar errors in English text. Given a sentence, the model generates a grammatically correct version using a text-to-text approach.
+
+Model Details
+Developed by: Harsha Vardhan N
+Model type: Sequence-to-Sequence Transformer
+Language(s): English
+License: Apache 2.0
+Finetuned from model: t5-small
+Training Details
+Training Data
+The model was fine-tuned on the wiki_auto/auto_full_with_split dataset, a large-scale corpus designed for sentence-level grammatical and stylistic simplification. It contains aligned pairs of complex and simplified English sentences extracted from Wikipedia and Simple Wikipedia. For this task, the dataset was used to teach the model how to correct ungrammatical sentences into fluent and grammatically correct English.
+
+Training Procedure
+Epochs: 3
+Training Duration: ~1 hour
+Optimizer: AdamW (via Hugging Face Seq2SeqTrainer)
+Learning Rate: 5e-5
+Batch Size: 8
+Environment: Google Colab GPU
+Technical Specifications
+Compute Infrastructure
+Hardware
+GPU: Google Colab-provided GPU (likely Tesla T4)
+Software
+Framework: Hugging Face Transformers, PyTorch
+Trainer Used: Seq2SeqTraine
